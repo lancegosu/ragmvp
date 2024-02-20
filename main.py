@@ -3,6 +3,8 @@ import streamlit as st
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 import openai
+import nltk
+nltk.download('stopwords')
 # from dotenv import load_dotenv
 #
 # load_dotenv()
