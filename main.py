@@ -3,23 +3,6 @@ import streamlit as st
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 import openai
-import nltk
-from pathlib import Path
-
-# Set LLAMA_INDEX_CACHE_DIR environment variable if not already set
-llama_index_cache_dir = os.getenv("LLAMA_INDEX_CACHE_DIR", "llama_index_cache")
-os.environ["LLAMA_INDEX_CACHE_DIR"] = os.path.join(os.path.dirname(__file__), llama_index_cache_dir)
-
-# Create the cache directory if it doesn't exist
-llama_index_cache_path = os.path.join(os.path.dirname(__file__), llama_index_cache_dir)
-Path(llama_index_cache_path).mkdir(parents=True, exist_ok=True)
-
-# Set the NLTK data path to the llama_index_cache_path
-nltk.data.path.append(llama_index_cache_path)
-
-# Download stopwords if not already downloaded
-if not os.path.exists(os.path.join(llama_index_cache_path, "corpora", "stopwords")):
-    nltk.download('stopwords', download_dir=llama_index_cache_path)
 # from dotenv import load_dotenv
 #
 # load_dotenv()
