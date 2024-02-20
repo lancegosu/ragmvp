@@ -4,7 +4,18 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 import openai
 import nltk
-nltk.download('stopwords')
+from pathlib import Path
+
+# Check if NLTK data path exists, and create it if not
+nltk_data_path = os.path.join(os.path.dirname(__file__), "nltk_data")
+Path(nltk_data_path).mkdir(parents=True, exist_ok=True)
+
+# Specify NLTK data path
+nltk.data.path.append(nltk_data_path)
+
+# Download stopwords if not already downloaded
+if not os.path.exists(os.path.join(nltk_data_path, "corpora", "stopwords")):
+    nltk.download('stopwords', download_dir=nltk_data_path)
 # from dotenv import load_dotenv
 #
 # load_dotenv()
